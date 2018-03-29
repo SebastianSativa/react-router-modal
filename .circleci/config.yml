@@ -29,16 +29,17 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: yarn install
+      - run: npm install
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
-      - run: yarn test
-      
+      # run build and tests
+      - run: npm build
+      - run: npm test
+
   deployment:
     npm:
       tag: /v[0-9]+(\.[0-9]+)*/
