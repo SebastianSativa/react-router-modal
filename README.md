@@ -131,13 +131,13 @@ When no modals are shown, nothing is rendered into the DOM.
 **Parameters**
 
 -   `props` **Props** 
-    -   `props.modalClassName` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to modals (optional, default `react-router-modal__modal`)
-    -   `props.backdropClassName` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to modal backdrops (optional, default `react-router-modal__backdrop`)
-    -   `props.containerClassName` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to the container itself (optional, default `react-router-modal__container`)
-    -   `props.bodyModalClassName` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to the <body /> when any modals are shown (optional, default `react-router-modal__modal-open`)
-    -   `props.onFirstModalMounted` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)?** handler invoked when first modal is shown
-    -   `props.onLastModalUnmounted` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)?** handler invoked when last modal is hidden
-    -   `props.autoRestoreScrollPosition` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Automatically restore the window scroll position when the last modal is unmounted. This is useful in cases where you have made the body position fixed on small screen widths, usually to work around mobaile browser scrolling behavior. Set this to false if you do not want this behavior. (optional, default `true`)
+    -   `props.modalClassName` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to modals (optional, default `react-router-modal__modal`)
+    -   `props.backdropClassName` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to modal backdrops (optional, default `react-router-modal__backdrop`)
+    -   `props.containerClassName` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to the container itself (optional, default `react-router-modal__container`)
+    -   `props.bodyModalClassName` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to the <body /> when any modals are shown (optional, default `react-router-modal__modal-open`)
+    -   `props.onFirstModalMounted` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)?** handler invoked when first modal is shown
+    -   `props.onLastModalUnmounted` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)?** handler invoked when last modal is hidden
+    -   `props.autoRestoreScrollPosition` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Automatically restore the window scroll position when the last modal is unmounted. This is useful in cases where you have made the body position fixed on small screen widths, usually to work around mobaile browser scrolling behavior. Set this to false if you do not want this behavior. (optional, default `true`)
 
 **Examples**
 
@@ -187,17 +187,17 @@ The component rendered in the modal will receive the following props:
 **Parameters**
 
 -   `_ref`  
--   `parentPath` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Either the parentPath specified in the ModalRoute, or a calculated value based on matched url
--   `closeModal` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** A convenience method to close the modal by navigating to the parentPath
--   `props` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-    -   `props.path` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** path to match
-    -   `props.exact` **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** If set, only show modal if route exactly matches path.
-    -   `props.parentPath` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** path to navigate to when backdrop is clicked
-    -   `props.onBackdropClick` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Handler to invoke when backdrop is clicked. If set, overrides the navigation to parentPath, so you need to handle that yourself.
-    -   `props.className` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to modal container
+-   `parentPath` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Either the parentPath specified in the ModalRoute, or a calculated value based on matched url
+-   `closeModal` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** A convenience method to close the modal by navigating to the parentPath
+-   `props` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `props.path` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** path to match
+    -   `props.exact` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** If set, only show modal if route exactly matches path.
+    -   `props.parentPath` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** path to navigate to when backdrop is clicked
+    -   `props.onBackdropClick` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Handler to invoke when backdrop is clicked. If set, overrides the navigation to parentPath, so you need to handle that yourself.
+    -   `props.className` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to modal container
     -   `props.children` **Children** modal content can be specified as chld elements
     -   `props.component` **ReactComponent** modal content can be specified as a component type. The component will be passed `parentPath` and `closeModal` props, in addition to the specified props, and the withRouter props.
-    -   `props.props` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Props to be passed to the react component specified by the component property.When the route matches, the modal is shown.
+    -   `props.props` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Props to be passed to the react component specified by the component property.When the route matches, the modal is shown.
         If multiple routes match, the modals will be stacked based on the length of the path that is matched.
 
 ## Modal
@@ -210,13 +210,13 @@ child elements of the Modal.
 
 **Parameters**
 
--   `props` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-    -   `props.stackOrder` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** order to stack modals, higher number means "on top"
-    -   `props.className` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to modal container
+-   `props` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `props.stackOrder` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** order to stack modals, higher number means "on top"
+    -   `props.className` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to modal container
     -   `props.children` **Children** Modal content can be specified as chld elements
     -   `props.component` **Component** React component to render in the modal.
-    -   `props.props` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** props to pass to the react component specified by the component property
-    -   `props.onBackdropClick` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** handler to be invoked when the modal backdrop is clicked
+    -   `props.props` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** props to pass to the react component specified by the component property
+    -   `props.onBackdropClick` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** handler to be invoked when the modal backdrop is clicked
 
 **Examples**
 
@@ -266,15 +266,15 @@ Renders a link that, when clicked, will navigate to the route that shows the mod
 
 **Parameters**
 
--   `props` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-    -   `props.path` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** path to match
-    -   `props.exact` **[Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** If set, only show modal if route exactly matches path.
-    -   `props.parentPath` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** path to navigate to when backdrop is clicked
-    -   `props.linkClassName` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to <Link />
-    -   `props.modalClassName` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to modal container
+-   `props` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+    -   `props.path` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** path to match
+    -   `props.exact` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** If set, only show modal if route exactly matches path.
+    -   `props.parentPath` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** path to navigate to when backdrop is clicked
+    -   `props.linkClassName` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to <Link />
+    -   `props.modalClassName` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to modal container
     -   `props.children` **Children** Link contents. Note that Modal content must be specified by the component property.
     -   `props.component` **ReactComponent** Component to render in the modal.
-    -   `props.props` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Props to be passed to the react component specified by the component property.
+    -   `props.props` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Props to be passed to the react component specified by the component property.
 
 **Examples**
 
