@@ -1,6 +1,6 @@
 {
   "name": "react-router-modal-enhanced",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "An extended version of react-router-modal by Dave Foley",
   "main": "lib/index.js",
   "repository": "https://github.com/SebastianSativa/react-router-modal",
@@ -10,7 +10,7 @@
     "test": "npm run -s test:mocha && npm run -s test:flow && npm run -s test:lint",
     "test:flow": "flow",
     "test:mocha": "nyc --reporter=html --reporter=text mocha --compilers js:babel-register --require test/setup.js test/*test.js",
-	"coverage": "nyc report --reporter=text-lcov | coveralls",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "test:lint": "eslint src/",
     "watch:test": "watch 'npm test' ./src ./test",
     "watch:build": "watch 'npm run build' ./src",
