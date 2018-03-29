@@ -43,5 +43,5 @@ jobs:
   deployment:
     npm:
       tag: /v[0-9]+(\.[0-9]+)*/
-          commands:
+      commands:
         - npm publish
