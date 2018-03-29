@@ -5,3 +5,5 @@ coverage/
 .eslintrc
 .flowconfig
 docs/
+.nyc_output/
+*.flow
