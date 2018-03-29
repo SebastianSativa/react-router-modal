@@ -17,6 +17,9 @@ whitelist: &whitelist
     - .babelrc
     - .eslintrc
     - .flowconfig
+    - docs/*
+    - css/*
+    - .nyc_output/*
 version: 2
 jobs:
   checkout:
@@ -78,7 +81,7 @@ jobs:
 
       - run:
           name: Submit coverage report to Coveralls.io
-          command: npm coveralls
+          command: npm run coverage
 
   build:
     <<: *defaults
