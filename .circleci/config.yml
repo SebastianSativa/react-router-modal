@@ -39,3 +39,4 @@ jobs:
       # run build and tests
       - run: npm build
       - run: npm test
+      
