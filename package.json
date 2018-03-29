@@ -1,6 +1,6 @@
 {
   "name": "react-router-modal-enhanced",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "An extended version of react-router-modal by Dave Foley",
   "main": "lib/index.js",
   "repository": "https://github.com/SebastianSativa/react-router-modal",
