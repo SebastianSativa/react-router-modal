@@ -7,9 +7,10 @@ dependencies:
   pre:
     - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
 deployment:
-  npm:
+  production:
     tag: /v[0-9]+(\.[0-9]+)*/
-        commands:
+    branch: master
+    commands:
       - npm publish
 jobs:
   build:
