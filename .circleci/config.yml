@@ -6,6 +6,12 @@ version: 2
 dependencies:
   pre:
     - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+deployment:
+  npm:
+    branch: master
+    tag: /v[0-9]+(\.[0-9]+)*/
+    commands:
+      - npm publish
 jobs:
   build:
     docker:
