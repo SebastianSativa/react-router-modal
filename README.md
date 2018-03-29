@@ -11,6 +11,8 @@
 
 ## react-router-modal
 
+[![npm version](https://badge.fury.io/js/react-router-modal-enhanced.svg)](https://npmjs.com/packages/react-router-modal-enhanced) [![CircleCI](https://circleci.com/gh/SebastianSativa/react-router-modal/tree/master.svg?style=shield&circle-token=b7833845ed1e92fe137eb480124cf8b722b81752)](https://circleci.com/gh/SebastianSativa/react-router-modal/tree/master) [![David](https://david-dm.org/SebastianSativa/react-router-modal.svg)](https://david-dm.org/SebastianSativa/react-router-modal) [![Known Vulnerabilities](https://snyk.io/test/github/sebastiansativa/react-router-modal/badge.svg?targetFile=package.json)](https://snyk.io/test/github/sebastiansativa/react-router-modal?targetFile=package.json)
+
 A simple way to handle showing modals with react-router version 4.
 
 Component docs: <https://github.com/davidmfoley/react-router-modal/blob/master/docs/react-router-modal.md>
