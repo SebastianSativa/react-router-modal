@@ -7,6 +7,8 @@ export type ModalDisplayInfo = {
   props: Object,
   stackOrder?: number,
   onBackdropClick?: Function,
+  onCloseButtonClick?: Function,
+  closeButtonComponent?: any,
 }
 
 export type ModalIdentifier = number

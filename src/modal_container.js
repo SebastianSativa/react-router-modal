@@ -164,7 +164,6 @@ export default class ModalContainer extends React.Component<Props, State> {
       window.requestAnimationFrame(this.afterRender);
       this.afterRender = null;
     }
-
     return (
       <div>
         {setIds.map(id => <ModalSetContainer key={id}

@@ -12,6 +12,9 @@ type Props = {
   props?: any,
   modalClassName?: string,
   linkClassName?: string,
+  onBackdropClick?: Function,
+  onCloseButtonClick?: Function,
+  closeButtonComponent?: any,
   parentPath?: string | (match: { url: string }) => string,
 }
 
@@ -27,8 +30,11 @@ type Props = {
 * @param {String} props.linkClassName class name to apply to <Link />
 * @param {String} props.modalClassName class name to apply to modal container
 * @param {Children} props.children Link contents. Note that Modal content must be specified by the component property.
-* @param {ReactComponent} props.component Component to render in the modal.
+* @param {Component} props.component Component to render in the modal.
 * @param {Object} props.props Props to be passed to the react component specified by the component property.
+* @param {Function} props.onBackdropClick handler to be invoked when the modal backdrop is clicked
+* @param {Function} props.onCloseButtonClick handler to be invoked when the modal close button is clicked
+* @param {Component} props.closeButtonComponent props.closeButtonComponent Any arbitrary component to act as a close button. Can have custom click event, but will be overridden by onCloseButtonClick if defined. Will be rendered inside modal container by default, but can be styled however way you want and even supports portals for maximum customization possibilities
 *
 *
 * @example <caption>Example ModalLink</caption>
@@ -46,7 +52,10 @@ function ModalLink(props: Props): any {
     linkClassName,
     match,
     parentPath,
-    modalClassName
+    modalClassName,
+    onBackdropClick,
+    onCloseButtonClick,
+    closeButtonComponent,
   } = props;
 
   return (
@@ -59,6 +68,9 @@ function ModalLink(props: Props): any {
         component={component}
         className={modalClassName}
         parentPath={parentPath || match.url}
+        onBackdropClick={onBackdropClick}
+        onCloseButtonClick={onCloseButtonClick}
+        closeButtonComponent={closeButtonComponent}
       />
     </Link>
   );

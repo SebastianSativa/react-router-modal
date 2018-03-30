@@ -130,6 +130,38 @@ describe('ModalRoute', () => {
     });
   });
 
+  const TestCloseButton = (props) => <button className="test-close-button" {...props}></button>
+
+  describe('onCloseButtonClick', () => {
+      let handlerInvoked;
+      const onCloseButtonClick = () => handlerInvoked = true;
+      beforeEach(() => {
+          handlerInvoked = false;
+
+          wrapper = mount(
+              <MemoryRouter initialEntries = {['/foo/bar']}>
+                <div>
+                  <ModalRoute component={BarModal} path='*/bar' className='test-string' parentPath='/foo' onCloseButtonClick={onCloseButtonClick} closeButtonComponent={TestCloseButton} />
+                  <ModalContainer backdropClassName='test-backdrop'/>
+                </div>
+              </MemoryRouter>
+          );
+      });
+
+      it('invokes the custom handler when close button is clicked', () => {
+          expect(wrapper.find('.test-string').length).to.eq(1);
+
+          const closeButton = wrapper.find('.test-close-button');
+		  closeButton.simulate('click');
+
+          expect(handlerInvoked).to.eq(true);
+      });
+
+      it('does not invoke the handler until the click', () => {
+          expect(handlerInvoked).to.eq(false);
+      });
+  });
+
   describe('parentPath', () => {
     describe('as string', () => {
       beforeEach(() => {
@@ -168,16 +200,48 @@ describe('ModalRoute', () => {
           </MemoryRouter>
         );
       });
-
-      it('navigates to parent path on backdrop click', () => {
-        expect(wrapper.find('.test-string').length).to.eq(1);
-
-        const backdrop = wrapper.find('.test-backdrop');
-        backdrop.simulate('click');
-
-        expect(wrapper.find('.test-string').length).to.eq(0);
-      });
     });
+  });
+
+  describe('parentPath', () => {
+      describe('as string', () => {
+          beforeEach(() => {
+              wrapper = mount(
+                  <MemoryRouter initialEntries = {['/foo/bar']}>
+                    <div>
+                      <ModalRoute component={BarModal} path='*/bar' className='test-string' parentPath='/foo' closeButtonComponent={TestCloseButton} />
+                      <ModalContainer backdropClassName='test-backdrop' />
+                    </div>
+                  </MemoryRouter>
+              );
+          });
+
+          it('navigates to parent path on close button click', () => {
+              expect(wrapper.find('.test-string').length).to.eq(1);
+
+              const closeButton = wrapper.find('.test-close-button');
+			  closeButton.simulate('click');
+
+              expect(wrapper.find('.test-string').length).to.eq(0);
+          });
+      });
+
+      describe('as function', () => {
+          function testParentPathHandler() {
+              return '/foo';
+          }
+
+          beforeEach(() => {
+              wrapper = mount(
+                  <MemoryRouter initialEntries = {['/foo/bar']}>
+                    <div>
+                      <ModalRoute component={BarModal} path='*/bar' className='test-string' parentPath={testParentPathHandler} closeButtonComponent={TestCloseButton} />
+                      <ModalContainer backdropClassName='test-backdrop'/>
+                    </div>
+                  </MemoryRouter>
+              );
+          });
+      });
   });
 
   describe('when route is reversed', () => {

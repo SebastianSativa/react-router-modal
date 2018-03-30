@@ -195,7 +195,9 @@ The component rendered in the modal will receive the following props:
     -   `props.path` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** path to match
     -   `props.exact` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** If set, only show modal if route exactly matches path.
     -   `props.parentPath` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** path to navigate to when backdrop is clicked
-    -   `props.onBackdropClick` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Handler to invoke when backdrop is clicked. If set, overrides the navigation to parentPath, so you need to handle that yourself.
+    -   `props.onBackdropClick` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** Handler to invoke when backdrop is clicked. If set, overrides the navigation to parentPath, so you need to handle that yourself.
+    -   `props.onCloseButtonClick` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** Handler to invoke when close button is clicked. If set, overrides the navigation to parentPath, so you need to handle that yourself. Set as null or undefined to let closeButtonComponent handle its own events.
+    -   `props.closeButtonComponent` **ReactComponent** Any arbitrary component to act as a close button. Can have custom click event, but will be overridden by onCloseButtonClick if defined. Will be rendered inside modal container by default, but can be styled however way you want and even supports portals for maximum customization possibilities.
     -   `props.className` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to modal container
     -   `props.children` **Children** modal content can be specified as chld elements
     -   `props.component` **ReactComponent** modal content can be specified as a component type. The component will be passed `parentPath` and `closeModal` props, in addition to the specified props, and the withRouter props.
@@ -216,9 +218,11 @@ child elements of the Modal.
     -   `props.stackOrder` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** order to stack modals, higher number means "on top"
     -   `props.className` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to modal container
     -   `props.children` **Children** Modal content can be specified as chld elements
-    -   `props.component` **Component** React component to render in the modal.
+    -   `props.component` **Component** React component to render in the modal
     -   `props.props` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** props to pass to the react component specified by the component property
     -   `props.onBackdropClick` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** handler to be invoked when the modal backdrop is clicked
+    -   `props.onCloseButtonClick` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** handler to be invoked when the modal close button is clicked
+    -   `props.closeButtonComponent` **Component** props.closeButtonComponent Any arbitrary component to act as a close button. Can have custom click event, but will be overridden by onCloseButtonClick if defined. Will be rendered inside modal container by default, but can be styled however way you want and even supports portals for maximum customization possibilities
 
 **Examples**
 
@@ -261,6 +265,17 @@ _Specifying stack order_
 </div>
 ```
 
+_Modal with close button_
+
+```javascript
+<div>
+  <Modal
+    component={MyTopComponent}
+    closeButtonComponent={MyCloseButton}
+  />
+</div>
+```
+
 ## ModalLink
 
 Link and ModalRoute in one convenient component
@@ -275,8 +290,11 @@ Renders a link that, when clicked, will navigate to the route that shows the mod
     -   `props.linkClassName` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to <Link />
     -   `props.modalClassName` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** class name to apply to modal container
     -   `props.children` **Children** Link contents. Note that Modal content must be specified by the component property.
-    -   `props.component` **ReactComponent** Component to render in the modal.
+    -   `props.component` **Component** Component to render in the modal.
     -   `props.props` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Props to be passed to the react component specified by the component property.
+    -   `props.onBackdropClick` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** handler to be invoked when the modal backdrop is clicked
+    -   `props.onCloseButtonClick` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** handler to be invoked when the modal close button is clicked
+    -   `props.closeButtonComponent` **Component** props.closeButtonComponent Any arbitrary component to act as a close button. Can have custom click event, but will be overridden by onCloseButtonClick if defined. Will be rendered inside modal container by default, but can be styled however way you want and even supports portals for maximum customization possibilities
 
 **Examples**
 

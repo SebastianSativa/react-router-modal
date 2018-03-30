@@ -12,11 +12,15 @@ function TestModalContent(props: any) {
   return <div>{props.message || 'none'}</div>;
 }
 
+function TestModalCloseButton(props) {
+  return <button className="test-close-button" {...props}></button>;
+}
+
 describe('rendering modals', () => {
   function Wrapper({showModal, modalProps}: any) {
     return (
       <div>
-        { showModal && <Modal className='test-modal' component={TestModalContent} props={modalProps || {}}>
+        { showModal && <Modal className='test-modal' component={TestModalContent} props={modalProps || {}} closeButtonComponent={TestModalCloseButton}>
           What
         </Modal> }
         <ModalContainer backdropClassName='test-backdrop-class-name' />
@@ -38,6 +42,12 @@ describe('rendering modals', () => {
   describe('with a modal', () => {
     beforeEach(() => {
       wrapper.setProps({showModal: true});
+    });
+
+    it('renders a close button if supplied', () => {
+        const closeButton = wrapper.find('.test-close-button');
+
+        expect(closeButton.length).to.eq(1);
     });
 
     it('renders a backdrop', () => {

@@ -9,7 +9,9 @@ type Props = {
   props?: Object,
   stackOrder?: number,
   className?: string,
-  onBackdropClick?: Function
+  onBackdropClick?: Function,
+  onCloseButtonClick?: Function,
+  closeButtonComponent?: any,
 }
 
 type State = {
@@ -31,9 +33,11 @@ type Context = {
  * @param {Number} props.stackOrder order to stack modals, higher number means "on top"
  * @param {String} props.className class name to apply to modal container
  * @param {Children} props.children Modal content can be specified as chld elements
- * @param {Component} props.component React component to render in the modal.
+ * @param {Component} props.component React component to render in the modal
  * @param {Object} props.props props to pass to the react component specified by the component property
  * @param {Function} props.onBackdropClick handler to be invoked when the modal backdrop is clicked
+ * @param {Function} props.onCloseButtonClick handler to be invoked when the modal close button is clicked
+ * @param {Component} props.closeButtonComponent props.closeButtonComponent Any arbitrary component to act as a close button. Can have custom click event, but will be overridden by onCloseButtonClick if defined. Will be rendered inside modal container by default, but can be styled however way you want and even supports portals for maximum customization possibilities
  *
  * @example <caption>Modals using a component and props, vs. child elements</caption>
  *
@@ -68,23 +72,32 @@ type Context = {
  *     stackOrder={1}
  *   />
  * </div>
+ *
+ * @example <caption>Modal with close button</caption>
+ * <div>
+ *   <Modal
+ *     component={MyTopComponent}
+ *     closeButtonComponent={MyCloseButton}
+ *   />
+ * </div>
  */
+
 export default class Modal extends React.Component<Props, State> {
   props: Props
   state: State = {}
   context: Context
-
   componentWillMount() {
-    const { className, children, component, stackOrder, props, onBackdropClick } = this.props;
-
+    const { className, children, component, stackOrder, props, onBackdropClick, onCloseButtonClick, closeButtonComponent } = this.props;
     this.setState({
       modalId: mountModal({
         setId: this.context.setId || 0,
         component,
         children,
+        closeButtonComponent,
         props: props || {},
         stackOrder,
         onBackdropClick,
+        onCloseButtonClick,
         className
       })
     });
@@ -95,15 +108,16 @@ export default class Modal extends React.Component<Props, State> {
   }
 
   componentWillReceiveProps(next: Props) {
-    const { className, children, component, stackOrder, props, onBackdropClick } = next;
-
+    const { className, children, component, stackOrder, props, onBackdropClick, onCloseButtonClick, closeButtonComponent } = next;
     updateModal(this.state.modalId, {
       component,
       children,
+      closeButtonComponent,
       props: props || {},
       stackOrder,
       onBackdropClick,
-      className
+      onCloseButtonClick,
+      className,
     });
   }
 
@@ -115,4 +129,3 @@ export default class Modal extends React.Component<Props, State> {
     return null;
   }
 }
-

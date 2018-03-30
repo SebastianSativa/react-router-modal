@@ -4,6 +4,8 @@ test/
 coverage/
 .eslintrc
 .flowconfig
+.gitignore
+yarn.lock
 docs/
 .nyc_output/
 *.flow

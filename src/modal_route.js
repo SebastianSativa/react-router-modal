@@ -9,6 +9,8 @@ type Props = {
   match: Match,
   history: { push: Function },
   onBackdropClick?: Function,
+  onCloseButtonClick?: Function,
+  closeButtonComponent?: any,
   path: string,
   children?: any,
   component?: any,
@@ -36,7 +38,9 @@ function getStackOrder(match) {
 * @param {String} props.path path to match
 * @param {Boolean} props.exact If set, only show modal if route exactly matches path.
 * @param {String} props.parentPath path to navigate to when backdrop is clicked
-* @param {String} props.onBackdropClick Handler to invoke when backdrop is clicked. If set, overrides the navigation to parentPath, so you need to handle that yourself.
+* @param {Function} props.onBackdropClick Handler to invoke when backdrop is clicked. If set, overrides the navigation to parentPath, so you need to handle that yourself.
+* @param {Function} props.onCloseButtonClick Handler to invoke when close button is clicked. If set, overrides the navigation to parentPath, so you need to handle that yourself. Set as null or undefined to let closeButtonComponent handle its own events.
+* @param {ReactComponent} props.closeButtonComponent Any arbitrary component to act as a close button. Can have custom click event, but will be overridden by onCloseButtonClick if defined. Will be rendered inside modal container by default, but can be styled however way you want and even supports portals for maximum customization possibilities.
 *
 * @param {String} props.className class name to apply to modal container
 *
@@ -50,7 +54,18 @@ function getStackOrder(match) {
 * If multiple routes match, the modals will be stacked based on the length of the path that is matched.
 *
 */
-function ModalRoute({ path, parentPath, className, children, component, exact, props, onBackdropClick }: Props): any {
+function ModalRoute({
+  path,
+  parentPath,
+  className,
+  children,
+  component,
+  exact,
+  props,
+  onBackdropClick,
+  onCloseButtonClick,
+  closeButtonComponent,
+}: Props): any {
   const getParentPath = (match: Match): string => {
     if (typeof(parentPath) === 'function') {
       return parentPath(match);
@@ -59,10 +74,14 @@ function ModalRoute({ path, parentPath, className, children, component, exact, p
     if (match.params[0]) return match.params[0];
     if (match.params[0] === '') return '/';
     return match.url;
-  }
+  };
 
   return (
-    <Route path={path} exact={exact} render={({match, location, history}) => (
+    <Route path={path} exact={exact} render={({match, location, history}) => {
+    const closeModal = () => {
+      history.push(getParentPath(match));
+    };
+    return (
       <Modal
         component={component}
         children={children}
@@ -72,13 +91,16 @@ function ModalRoute({ path, parentPath, className, children, component, exact, p
           location,
           history,
           parentPath: getParentPath(match),
-          closeModal: () => history.push(getParentPath(match))
+          closeModal,
         }}
         className={className}
         stackOrder={getStackOrder(match)}
-        onBackdropClick={onBackdropClick || (() => history.push(getParentPath(match)))}
+        onBackdropClick={onBackdropClick || closeModal}
+        onCloseButtonClick={onCloseButtonClick || closeModal}
+        closeButtonComponent={closeButtonComponent}
       />
-    )} />
+    );
+  }} />
   );
 }
 

@@ -54,7 +54,6 @@ export default class ModalSetContainer extends React.Component<Props, State> {
     if (modals.length === 0) {
       return null;
     }
-
     return (
       <div className={containerClassName}>
         {modals.map(m => <ModalWithBackdrop
@@ -64,6 +63,8 @@ export default class ModalSetContainer extends React.Component<Props, State> {
           containerClassName={containerClassName}
           modalClassName={m.info.className || modalClassName}
           onBackdropClick={m.info.onBackdropClick}
+          onCloseButtonClick={m.info.onCloseButtonClick}
+          closeButtonComponent={m.info.closeButtonComponent}
           component={m.info.component}
           props={m.info.props || {}}
           context={{setId: m.id}}

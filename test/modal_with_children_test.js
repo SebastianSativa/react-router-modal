@@ -9,10 +9,15 @@ import chai from 'chai';
 let expect = chai.expect;
 
 describe('rendering modals', () => {
+
+  function TestModalCloseButton(props) {
+      return <button className="test-close-button" {...props}></button>;
+  }
+
   function Wrapper({showModal}: {showModal?: boolean}) {
     return (
       <div>
-        { showModal && <Modal className='test-modal'>
+        { showModal && <Modal className='test-modal' closeButtonComponent={TestModalCloseButton}>
           What
         </Modal> }
         <ModalContainer backdropClassName='test-backdrop-class-name' />
@@ -35,6 +40,13 @@ describe('rendering modals', () => {
 
       expect(modal.length).to.eq(1);
       expect(modal.get(0).innerHTML).to.contain('What');
+    });
+
+    it('renders regular modal close button alongside content', () => {
+        const modal = wrapper.find('.test-modal');
+        const closeButton = modal.find('.test-close-button');
+
+        expect(closeButton.length).to.eq(1);
     });
   });
 });
